@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "raycast-bcrypt",
   "title": "Bcrypt",
-  "description": "Generate Bcrypt hash of a given string",
+  "description": "Hash given string with hashing algorithm",
   "icon": "command-icon.png",
   "author": "tavsec",
   "categories": [
@@ -13,8 +13,8 @@
     {
       "name": "index",
       "title": "Hash",
-      "subtitle": "Bcrypt",
-      "description": "Generate Bcrypt hash of a given string",
+      "subtitle": "Hash string",
+      "description": "Hash given string with hashing algorithm",
       "mode": "view"
     }
   ],

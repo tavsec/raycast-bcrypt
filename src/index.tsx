@@ -1,9 +1,11 @@
 import { Form, ActionPanel, Action, showToast, Detail, Clipboard } from "@raycast/api";
 import { useState } from "react";
-var bcrypt = require('bcryptjs');
+const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 
 type Values = {
   text: string;
+  algorithm: string;
 };
 
 export default function Command() {
@@ -14,8 +16,17 @@ export default function Command() {
       return
     }
 
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(values.text, salt);
+    let hash = "";
+    if(values.algorithm === "bcrypt"){
+      const salt = bcrypt.genSaltSync(10);
+      hash = bcrypt.hashSync(values.text, salt);
+    }else{
+    hash = crypto.createHash(values.algorithm, "")
+        .update(values.text)
+        .digest('hex');
+    }
+    
+
     await Clipboard.copy(hash);
     showToast({ title: "Generated", message: "Hash saved to clipboard" });
   }
@@ -52,7 +63,11 @@ export default function Command() {
           }
         }}
       />
-
+      <Form.Dropdown id="algorithm" title="Select hashing algorithm" defaultValue="bcrypt">
+        <Form.Dropdown.Item value="bcrypt" title="Bcrypt" />
+        <Form.Dropdown.Item value="sha256" title="SHA256" />
+        <Form.Dropdown.Item value="md5" title="MD5" />
+      </Form.Dropdown>
     </Form>
   );
 }
