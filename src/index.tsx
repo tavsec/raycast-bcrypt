@@ -65,8 +65,16 @@ export default function Command() {
       />
       <Form.Dropdown id="algorithm" title="Select hashing algorithm" defaultValue="bcrypt">
         <Form.Dropdown.Item value="bcrypt" title="Bcrypt" />
+        <Form.Dropdown.Item value="sha1" title="SHA1" />
         <Form.Dropdown.Item value="sha256" title="SHA256" />
+        <Form.Dropdown.Item value="sha512" title="SHA512" />
         <Form.Dropdown.Item value="md5" title="MD5" />
+        <Form.Dropdown.Item value="sha224" title="SHA224" />
+        <Form.Dropdown.Item value="sha384" title="SHA384" />
+        <Form.Dropdown.Item value="sha3-224" title="SHA3 224" />
+        <Form.Dropdown.Item value="sha3-256" title="SHA3 256" />
+        <Form.Dropdown.Item value="sha3-384" title="SHA3 384" />
+        <Form.Dropdown.Item value="sha3-512" title="SHA3 512" />
       </Form.Dropdown>
     </Form>
   );
