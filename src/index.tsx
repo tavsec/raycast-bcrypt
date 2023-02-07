@@ -1,7 +1,7 @@
-import { Form, ActionPanel, Action, showToast, Detail, Clipboard } from "@raycast/api";
+import { Form, ActionPanel, Action, showToast, Clipboard } from "@raycast/api";
 import { useState } from "react";
-const crypto = require("crypto");
-const bcrypt = require("bcryptjs");
+import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
 type Values = {
   text: string;
@@ -13,19 +13,16 @@ export default function Command() {
   async function handleSubmit(values: Values) {
     if (!isTextValid(values.text)) {
       setStringError("The field should't be empty!");
-      return
+      return;
     }
 
     let hash = "";
-    if(values.algorithm === "bcrypt"){
+    if (values.algorithm === "bcrypt") {
       const salt = bcrypt.genSaltSync(10);
       hash = bcrypt.hashSync(values.text, salt);
-    }else{
-    hash = crypto.createHash(values.algorithm, "")
-        .update(values.text)
-        .digest('hex');
+    } else {
+      hash = crypto.createHash(values.algorithm).update(values.text).digest("hex");
     }
-    
 
     await Clipboard.copy(hash);
     showToast({ title: "Generated", message: "Hash saved to clipboard" });
@@ -37,8 +34,8 @@ export default function Command() {
     }
   }
 
-  function isTextValid(text: string|undefined ){
-    return text?.length != 0
+  function isTextValid(text: string | undefined) {
+    return text?.length != 0;
   }
 
   return (
@@ -49,10 +46,10 @@ export default function Command() {
         </ActionPanel>
       }
     >
-      <Form.TextField 
-        id="text" 
-        title="Text" 
-        placeholder="Enter string that you want to hash" 
+      <Form.TextField
+        id="text"
+        title="Text"
+        placeholder="Enter string that you want to hash"
         error={stringError}
         onChange={dropStringErrorIfNeeded}
         onBlur={(event) => {

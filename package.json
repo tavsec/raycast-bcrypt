@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "index",
-      "title": "Hash",
+      "title": "Hasher",
       "subtitle": "Hash string",
       "description": "Hash given string with hashing algorithm",
       "mode": "view"
