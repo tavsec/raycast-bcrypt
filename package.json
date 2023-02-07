@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "raycast-bcrypt",
-  "title": "Bcrypt",
+  "name": "raycast-hasher",
+  "title": "Hasher",
   "description": "Hash given string with hashing algorithm",
   "icon": "command-icon.png",
   "author": "tavsec",

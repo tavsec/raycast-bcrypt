@@ -1,3 +1,3 @@
-# Bcrypt
+# Hasher
 
-Generate Bcrypt hash of a given string
+Raycasts plugin, which generates a hash of a string with selected hashing algorithm.
